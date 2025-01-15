@@ -1522,12 +1522,12 @@ static int http_connect(URLContext *h, const char *path, const char *local_path,
     // Note: we send the Range header on purpose, even when we're probing,
     // since it allows us to detect more reliably if a (non-conforming)
     // server supports seeking by analysing the reply headers.
-    if (!has_header(s->headers, "\r\nRange: ") && !post && (s->off > 0 || s->end_off || s->seekable != 0)) {
+    /*if (!has_header(s->headers, "\r\nRange: ") && !post && (s->off > 0 || s->end_off || s->seekable != 0)) {
         av_bprintf(&request, "Range: bytes=%"PRIu64"-", s->off);
         if (s->end_off)
             av_bprintf(&request, "%"PRId64, s->end_off - 1);
         av_bprintf(&request, "\r\n");
-    }
+    }*/
     if (send_expect_100 && !has_header(s->headers, "\r\nExpect: "))
         av_bprintf(&request, "Expect: 100-continue\r\n");
 
